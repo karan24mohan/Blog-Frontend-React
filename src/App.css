@@ -193,6 +193,16 @@ nav {
   border-radius: 5px;
 }
 
+.navUserName {
+  cursor: pointer;
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 5rem;
+  padding: 1rem 1rem;
+  color: #fff;
+  font-size: 18px;
+}
+
 .jodit-react-container {
   width: 100%;
 }

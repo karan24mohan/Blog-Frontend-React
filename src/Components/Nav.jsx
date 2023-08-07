@@ -2,7 +2,8 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Nav = () => {
-  const auth = localStorage.getItem("user");
+  let auth = localStorage.getItem("user");
+  auth = JSON.parse(auth);
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.clear();
@@ -17,18 +18,16 @@ const Nav = () => {
           </Link>
           <ul className="navLinks">
             <li>
-              <Link to="/blogs">Upload Blog</Link>
-            </li>
-            <li>
               <div className="dropdown">
                 <div data-bs-toggle="dropdown" aria-expanded="false">
-                  <img
-                    src="https://gebbs-new.vercel.app/images/user.svg"
-                    alt="User logo"
-                    style={{ cursor: "pointer" }}
-                  />
+                  <h3 className="mb-0 navUserName">{auth.name}</h3>
                 </div>
                 <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to="/blogs">
+                      Upload Blog
+                    </Link>
+                  </li>
                   <li>
                     <Link className="dropdown-item" to="/userProfile">
                       Profile
