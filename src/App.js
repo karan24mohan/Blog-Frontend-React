@@ -10,6 +10,7 @@ import Signup from "./Components/Signup";
 import ShowNavBar from "./Components/ShowNavBar/ShowNavBar";
 import UpdateBlog from "./Components/UpdateBlog";
 import SingleBlog from "./Components/SingleBlog";
+import AllBlogs from "./Components/AllBlogs";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route element={<PrivateComponent />}>
             <Route path="/" element={<Home />} />{" "}
             <Route path="/blogs" element={<Blogs />} />{" "}
+            <Route path="/allblogs" element={<AllBlogs />} />{" "}
             <Route path="/getSingleBlog/:id" element={<UpdateBlog />} />{" "}
             <Route path="/SingleBlog/:id" element={<SingleBlog />} />{" "}
             <Route path="/userProfile" element={<UserProfile />} />{" "}

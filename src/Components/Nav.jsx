@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 
 const Nav = () => {
@@ -14,9 +15,12 @@ const Nav = () => {
       {auth ? (
         <nav>
           <Link to="/">
-            <h1>Logo</h1>
+            <img src={logo} alt="blog logo" className="logo" />
           </Link>
           <ul className="navLinks">
+            <li>
+              <Link to="/allBlogs">All Blogs</Link>
+            </li>
             <li>
               <div className="dropdown">
                 <div data-bs-toggle="dropdown" aria-expanded="false">

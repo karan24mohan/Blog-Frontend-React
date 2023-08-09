@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
-
-  useEffect(() => {
-    let auth = localStorage.getItem("user");
-    auth = JSON.parse(auth);
-    if (auth) {
-      toast.success(`Welcome ${auth.name}!`, {
-        toastId: 123,
-        delay: 1000,
-      });
-    }
-    fetchBlogs();
-  }, []);
+  // const [authName, setAuthName] = useState([]);
+  let auth = JSON.parse(localStorage.getItem("user"));
 
   async function fetchBlogs() {
     const result = await fetch("http://localhost:3100/blogs", {
       method: "GET",
     });
     const data = await result.json();
-    setBlogs(data);
+    const filterData = data.filter((item) => {
+      return item.author === auth.name;
+    });
+    setBlogs(filterData);
   }
+
+  useEffect(() => {
+    if (auth) {
+      fetchBlogs();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const deleteBlog = async (id) => {
     console.log(id);
@@ -36,6 +37,7 @@ const Home = () => {
   return (
     <>
       <div className="container">
+        <h1 className="mt-3 fw-bold">Your Articles</h1>
         {blogs.length > 0 ? (
           <div className="row">
             {blogs.map((blog, index) => {
