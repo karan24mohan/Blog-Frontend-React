@@ -15,7 +15,7 @@ const Login = () => {
     }
   });
 
-  const handleSubmit = async () => {
+  async function handleSubmit() {
     const result = await fetch("http://localhost:3100/login", {
       method: "POST",
       body: JSON.stringify({
@@ -40,7 +40,14 @@ const Login = () => {
     } else {
       toast.error(data.message);
     }
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
   };
+
   return (
     <>
       <div className="form-container-wrapper">
@@ -66,6 +73,7 @@ const Login = () => {
                 id="password"
                 placeholder="Enter Password"
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyPress={handleKeyDown}
               />
             </div>
             <button
